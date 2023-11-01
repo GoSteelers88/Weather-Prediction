@@ -1,0 +1,66 @@
+# Read Me for Weather Predection Visualization Tool
+
+## Table of Contents
+
+1. [Introduction](#Introduction)
+2. [Project Structure](#Project-Structure)
+3. [Dependencies](#Dependencies)
+4. [Installation Guide](#Installation-Guide)
+5. [Usage](#Usage)
+6. [Functionality](#Functionality)
+7. [Visualization](#Visualization)
+8. [Error Handling](#Error-Handling)
+9. [Contributing](#Contributing)
+
+## Introduction
+This Python program utilizes the WeatherAPI to fetch forecast data for a specified city and visualizes the maximum and minimum temperatures over a 5-day period. It provides a simple CLI to input the city name and displays a bar chart for the temperature forecast.
+
+## Project Structure
+The project consists of the main Python script (`weather_forecast_visualization.py`) and an additional module (`weather_forecast.py`) which contains the function to fetch and process forecast data.
+
+## Dependencies
+* Python 3.x
+* requests
+* matplotlib
+
+## Installation Guide
+1. Clone the repository.
+2. Run `pip install -r requirements.txt` to install the required Python packages.
+
+## Usage
+To use this tool, replace `"your_api_key"` with your actual WeatherAPI key. Then run the script in the terminal or command prompt.
+
+## Functionality
+
+### Fetching Forecast
+The function `get_forecast(api_key, city)` sends an HTTP GET request to the WeatherAPI and processes the response. It converts the maximum and minimum temperatures from Celsius to Fahrenheit for a user-friendly experience in the U.S. market.
+
+### Data Output
+The output is structured in three lists:
+- `dates`: List of dates for the forecast period.
+- `max_temps_f`: List of maximum temperatures in Fahrenheit.
+- `min_temps_f`: List of minimum temperatures in Fahrenheit.
+
+## Visualization
+
+### Bar Chart
+Upon successful retrieval of data, the program generates a bar chart using `matplotlib` with the following features:
+- The X-axis represents dates.
+- The Y-axis represents temperatures in Fahrenheit.
+- There are two bars for each date representing the maximum and minimum temperatures.
+
+## Error Handling
+The program checks the status code of the response. If the API call is unsuccessful, the function returns `None`, and the user is notified of the error.
+
+## Contributing
+Contributions to this tool are welcome. If you have suggestions for improvements or have encountered issues, please open an issue or create a pull request in the repository.
+
+### Further Development
+Potential areas for further development include:
+- Expanding to a 10-day forecast.
+- Adding additional weather parameters such as humidity, precipitation, and wind speed.
+- Creating a more interactive user interface or web application.
+
+For more information on the WeatherAPI and the data it provides, refer to the [WeatherAPI Documentation](https://www.weatherapi.com/docs/).
+
+This Read Me provides a comprehensive guide to the Weather Forecast Visualization Tool, allowing users to effectively install and utilize the program. For further assistance, please refer to the contact information provided in the repository.

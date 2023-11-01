@@ -1,0 +1,59 @@
+
+import requests
+import matplotlib.pyplot as plt
+
+def get_forecast(api_key, city):
+    base_url = f"http://api.weatherapi.com/v1/forecast.json?key={api_key}&q={city}&days=5"
+
+    response = requests.get(base_url)
+    data = response.json()
+
+    if response.status_code == 200:
+        forecast_days = data["forecast"]["forecastday"]
+
+        dates = []
+        max_temps_f = []
+        min_temps_f = []
+
+        for forecast in forecast_days:
+            date = forecast["date"]
+            max_temp_c = forecast["day"]["maxtemp_c"]
+            min_temp_c = forecast["day"]["mintemp_c"]
+
+            max_temp_f = (max_temp_c * 9/5) + 32
+            min_temp_f = (min_temp_c * 9/5) + 32
+
+            dates.append(date)
+            max_temps_f.append(max_temp_f)
+            min_temps_f.append(min_temp_f)
+
+            # Print the forecast information
+            print(f"Date: {date}")
+            print(f"Max Temperature: {max_temp_f}°F")
+            print(f"Min Temperature: {min_temp_f}°F")
+            print("-" * 20)
+
+        # Plot the weather forecast
+        plt.figure(figsize=(10, 5))
+        plt.bar(dates, max_temps_f, label="Max Temperature")
+        plt.bar(dates, min_temps_f, label="Min Temperature")
+        plt.xlabel("Date")
+        plt.ylabel("Temperature (°F)")
+        plt.title(f"Weather Forecast for {city}")
+        plt.legend()
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
+    else:
+        print("Error occurred while fetching forecast data.")
+
+# Prompt the user for a city name
+city = input("Enter a city name: ")
+
+# Enter your WeatherAPI API key here
+api_key = "your_api_key"
+
+# Call the function to get the forecast information and plot the chart
+get_forecast(api_key, city)
+```
+
